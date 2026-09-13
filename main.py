@@ -47,7 +47,7 @@ def get_users():
     Get all Jellyfin users from API
     """
     url = JELLYFIN_URL + "/Users"
-    headers = {"X-Emby-Token": JELLYFIN_TOKEN}
+    headers = {"Authorization": f"MediaBrowser Token=\"{JELLYFIN_TOKEN}\""}
     try:
         r = requests.get(url, headers=headers)
         users = r.json()
@@ -61,7 +61,7 @@ def get_items():
     Get all Jellyfin items from API
     """
     url = JELLYFIN_URL + "/Items/Counts"
-    headers = {"X-Emby-Token": JELLYFIN_TOKEN}
+    headers = {"Authorization": f"MediaBrowser Token=\"{JELLYFIN_TOKEN}\""}
     try:
         r = requests.get(url, headers=headers)
         items = r.json()
@@ -75,7 +75,7 @@ def get_session():
     Get current sessions from Jellyfin API
     """
     url = JELLYFIN_URL + "/Sessions?ActiveWithinSeconds=" + str(COLLECT_INTERVAL)
-    headers = {"X-Emby-Token": JELLYFIN_TOKEN}
+    headers = {"Authorization": f"MediaBrowser Token=\"{JELLYFIN_TOKEN}\""}
     try:
         r = requests.get(url, headers=headers)
         sessions = r.json()
